@@ -11,7 +11,7 @@ import { Card, Input, ScreenContainer } from '../../components';
 import { DUMMY_ARTICLES } from '../../data/dummy';
 
 interface LearnProps {
-  onArticlePress: (articleId: string) => void;
+  onArticlePress?: (articleId: string) => void;
 }
 
 export const LearnScreen: React.FC<LearnProps> = ({ onArticlePress }) => {
@@ -30,7 +30,7 @@ export const LearnScreen: React.FC<LearnProps> = ({ onArticlePress }) => {
 
   const renderArticle = ({ item }: { item: typeof DUMMY_ARTICLES[0] }) => (
     <TouchableOpacity
-      onPress={() => onArticlePress(item.id)}
+      onPress={() => onArticlePress?.(item.id)}
       activeOpacity={0.8}
     >
       <Card variant="outlined" style={styles.articleCard}>

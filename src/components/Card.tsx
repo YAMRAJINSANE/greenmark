@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   ImageSourcePropType,
+  GestureResponderEvent,
 } from 'react-native';
 import { COLORS, TYPOGRAPHY, SPACING, BORDERS, SHADOWS } from '../theme';
 
@@ -20,6 +21,13 @@ interface CardProps {
   variant?: 'default' | 'elevated' | 'outlined';
 }
 
+const isImageSource = (
+  image: React.ReactNode | ImageSourcePropType
+): image is ImageSourcePropType =>
+  typeof image === 'number' ||
+  Array.isArray(image) ||
+  (typeof image === 'object' && image !== null && !React.isValidElement(image));
+
 export const Card: React.FC<CardProps> = ({
   title,
   subtitle,
@@ -29,8 +37,6 @@ export const Card: React.FC<CardProps> = ({
   style,
   variant = 'default',
 }) => {
-  const CardComponent = onPress ? TouchableOpacity : View;
-
   const getStyle = () => {
     const baseStyle = {
       ...styles.card,
@@ -55,16 +61,14 @@ export const Card: React.FC<CardProps> = ({
     return [baseStyle, variantStyles[variant], style];
   };
 
-  return (
-    <CardComponent
-      style={getStyle()}
-      onPress={onPress}
-      activeOpacity={onPress ? 0.8 : 1}
-    >
+  const content = (
+    <>
       {image && (
         <View style={styles.imageContainer}>
           {typeof image === 'string' ? (
             <Text style={styles.emojiImage}>{image}</Text>
+          ) : isImageSource(image) ? (
+            <Image source={image} style={styles.image} resizeMode="cover" />
           ) : (
             image
           )}
@@ -79,7 +83,21 @@ export const Card: React.FC<CardProps> = ({
       )}
 
       {children && <View style={styles.content}>{children}</View>}
-    </CardComponent>
+    </>
+  );
+
+  if (onPress) {
+    return (
+      <TouchableOpacity style={getStyle()} onPress={onPress} activeOpacity={0.8}>
+        {content}
+      </TouchableOpacity>
+    );
+  }
+
+  return (
+    <View style={getStyle()}>
+      {content}
+    </View>
   );
 };
 
@@ -95,6 +113,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primaryLight,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   emojiImage: {
     fontSize: 64,

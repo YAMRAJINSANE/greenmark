@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 // Screens
 import SplashScreen from '../screens/auth/SplashScreen';
@@ -26,8 +26,8 @@ import ProfileScreen from '../screens/app/ProfileScreen';
 // Theme
 import { COLORS } from '../theme';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator<any>();
+const Tab = createBottomTabNavigator<any>();
 
 // Auth Stack
 const AuthStack = () => (

@@ -11,10 +11,10 @@ import { Card, Button, Badge, ScreenContainer } from '../../components';
 import { DUMMY_USER, DUMMY_CERTIFICATES, DUMMY_DASHBOARD_STATS } from '../../data/dummy';
 
 interface ProfileProps {
-  onSettings: () => void;
-  onPaymentMethods: () => void;
-  onCertificates: () => void;
-  onLogout: () => void;
+  onSettings?: () => void;
+  onPaymentMethods?: () => void;
+  onCertificates?: () => void;
+  onLogout?: () => void;
 }
 
 interface MenuItemProps {
@@ -52,6 +52,8 @@ export const ProfileScreen: React.FC<ProfileProps> = ({
   onCertificates,
   onLogout,
 }) => {
+  const noop = () => {};
+
   return (
     <ScreenContainer scrollable style={styles.container}>
       {/* Profile Header */}
@@ -115,24 +117,24 @@ export const ProfileScreen: React.FC<ProfileProps> = ({
       <MenuItem
         icon="💳"
         label="Payment Methods"
-        onPress={onPaymentMethods}
+        onPress={onPaymentMethods ?? noop}
       />
       <MenuItem
         icon="🏅"
         label="My Certificates"
         value={`${DUMMY_DASHBOARD_STATS.certificatesEarned}`}
-        onPress={onCertificates}
+        onPress={onCertificates ?? noop}
       />
       <MenuItem
         icon="⚙️"
         label="Settings"
-        onPress={onSettings}
+        onPress={onSettings ?? noop}
       />
 
       {/* Logout Button */}
       <Button
         label="Logout"
-        onPress={onLogout}
+        onPress={onLogout ?? noop}
         variant="outline"
         fullWidth
         style={styles.logoutButton}

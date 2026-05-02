@@ -48,11 +48,6 @@
         }
       ]
     ],
-    "extra": {
-      "eas": {
-        "projectId": "greenmark-2026"
-      }
-    },
     "description": "GreenMark - Simple Carbon Offsetting Platform for Small Businesses",
     "primaryColor": "#2BA3A3",
     "backgroundColor": "#FFFFFF"

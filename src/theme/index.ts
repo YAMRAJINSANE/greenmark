@@ -51,6 +51,7 @@ export const TYPOGRAPHY = {
 
   // Type Scale
   sizes: {
+    huge: 48,
     h1: 22,
     h2: 18,
     h3: 14,
@@ -74,7 +75,7 @@ export const TYPOGRAPHY = {
     semibold: '600',
     bold: '700',
   },
-};
+} as const;
 
 export const SPACING = {
   xs: 4,

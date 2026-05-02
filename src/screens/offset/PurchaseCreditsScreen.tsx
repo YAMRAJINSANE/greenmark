@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.successLight,
     paddingHorizontal: SPACING.md,
     marginHorizontal: -SPACING.md,
-    paddingHorizontal: SPACING.md,
   },
   totalLabel: {
     fontSize: TYPOGRAPHY.sizes.body,

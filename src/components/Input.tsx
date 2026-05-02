@@ -34,13 +34,13 @@ export const Input: React.FC<InputProps> = ({
       <View
         style={[
           styles.inputWrapper,
-          error && { borderColor: COLORS.error, borderWidth: 2 },
+          error ? { borderColor: COLORS.error, borderWidth: 2 } : undefined,
         ]}
       >
         {icon && <View style={styles.icon}>{icon}</View>}
         {prefix && <Text style={styles.prefix}>{prefix}</Text>}
         <TextInput
-          style={[styles.input, icon && { paddingLeft: 0 }]}
+          style={[styles.input, icon ? { paddingLeft: 0 } : undefined]}
           placeholderTextColor={COLORS.neutral500}
           {...props}
         />

@@ -11,9 +11,9 @@ import { Card, Button, ScreenContainer } from '../../components';
 import { DUMMY_USER, DUMMY_DASHBOARD_STATS, DUMMY_TRANSACTIONS } from '../../data/dummy';
 
 interface DashboardProps {
-  onCalculate: () => void;
-  onOffset: () => void;
-  onViewCertificates: () => void;
+  onCalculate?: () => void;
+  onOffset?: () => void;
+  onViewCertificates?: () => void;
 }
 
 export const DashboardScreen: React.FC<DashboardProps> = ({
@@ -21,6 +21,8 @@ export const DashboardScreen: React.FC<DashboardProps> = ({
   onOffset,
   onViewCertificates,
 }) => {
+  const noop = () => {};
+
   return (
     <ScreenContainer scrollable style={styles.container}>
       {/* Greeting */}
@@ -82,21 +84,21 @@ export const DashboardScreen: React.FC<DashboardProps> = ({
       <Text style={styles.sectionTitle}>Quick Actions</Text>
       <Button
         label="📊 Calculate New Emissions"
-        onPress={onCalculate}
+        onPress={onCalculate ?? noop}
         variant="primary"
         fullWidth
         style={styles.actionButton}
       />
       <Button
         label="🌿 Offset More Emissions"
-        onPress={onOffset}
+        onPress={onOffset ?? noop}
         variant="secondary"
         fullWidth
         style={styles.actionButton}
       />
       <Button
         label="🏅 View Certificates"
-        onPress={onViewCertificates}
+        onPress={onViewCertificates ?? noop}
         variant="outline"
         fullWidth
       />
