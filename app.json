@@ -15,7 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTabletMode": true,
+      "supportsTablet": true,
       "infoPlist": {
         "UIRequiredDeviceCapabilities": [
           "portrait",

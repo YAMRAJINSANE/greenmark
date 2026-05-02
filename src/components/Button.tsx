@@ -76,8 +76,8 @@ export const Button: React.FC<ButtonProps> = ({
       baseStyle,
       variantStyles[variant],
       sizeStyles[size],
-      fullWidth && { width: '100%' },
-      disabled && { opacity: 0.6 },
+      fullWidth ? styles.fullWidth : undefined,
+      disabled ? { opacity: 0.6 } : undefined,
       style,
     ];
   };
@@ -130,6 +130,9 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizes.body,
     fontWeight: TYPOGRAPHY.weights.semibold,
     fontFamily: TYPOGRAPHY.fonts.inter,
+  },
+  fullWidth: {
+    width: '100%',
   },
 });
 

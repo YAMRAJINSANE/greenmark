@@ -28,6 +28,7 @@ import { COLORS } from '../theme';
 
 const Stack = createStackNavigator<any>();
 const Tab = createBottomTabNavigator<any>();
+const screen = (component: React.ComponentType<any>) => component;
 
 // Auth Stack
 const AuthStack = () => (
@@ -37,9 +38,9 @@ const AuthStack = () => (
       animationEnabled: true,
     }}
   >
-    <Stack.Screen name="Splash" component={SplashScreen} />
-    <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="SignUp" component={SignUpScreen} />
+    <Stack.Screen name="Splash" component={screen(SplashScreen)} />
+    <Stack.Screen name="Login" component={screen(LoginScreen)} />
+    <Stack.Screen name="SignUp" component={screen(SignUpScreen)} />
   </Stack.Navigator>
 );
 
@@ -50,8 +51,8 @@ const OnboardingStack = () => (
       headerShown: false,
     }}
   >
-    <Stack.Screen name="BusinessType" component={BusinessTypeScreen} />
-    <Stack.Screen name="BusinessDetails" component={BusinessDetailsScreen} />
+    <Stack.Screen name="BusinessType" component={screen(BusinessTypeScreen)} />
+    <Stack.Screen name="BusinessDetails" component={screen(BusinessDetailsScreen)} />
   </Stack.Navigator>
 );
 
@@ -62,10 +63,10 @@ const CalculatorStack = () => (
       headerShown: false,
     }}
   >
-    <Stack.Screen name="CalculatorElectricity" component={CalculatorElectricityScreen} />
-    <Stack.Screen name="CalculatorLPG" component={CalculatorLPGScreen} />
-    <Stack.Screen name="CalculatorWasteTransport" component={CalculatorWasteTransportScreen} />
-    <Stack.Screen name="EmissionsResult" component={EmissionsResultScreen} />
+    <Stack.Screen name="CalculatorElectricity" component={screen(CalculatorElectricityScreen)} />
+    <Stack.Screen name="CalculatorLPG" component={screen(CalculatorLPGScreen)} />
+    <Stack.Screen name="CalculatorWasteTransport" component={screen(CalculatorWasteTransportScreen)} />
+    <Stack.Screen name="EmissionsResult" component={screen(EmissionsResultScreen)} />
   </Stack.Navigator>
 );
 
@@ -76,11 +77,11 @@ const OffsetStack = () => (
       headerShown: false,
     }}
   >
-    <Stack.Screen name="Marketplace" component={MarketplaceScreen} />
-    <Stack.Screen name="ProjectDetail" component={ProjectDetailScreen} />
-    <Stack.Screen name="PurchaseCredits" component={PurchaseCreditsScreen} />
-    <Stack.Screen name="Payment" component={PaymentScreen} />
-    <Stack.Screen name="Success" component={SuccessScreen} />
+    <Stack.Screen name="Marketplace" component={screen(MarketplaceScreen)} />
+    <Stack.Screen name="ProjectDetail" component={screen(ProjectDetailScreen)} />
+    <Stack.Screen name="PurchaseCredits" component={screen(PurchaseCreditsScreen)} />
+    <Stack.Screen name="Payment" component={screen(PaymentScreen)} />
+    <Stack.Screen name="Success" component={screen(SuccessScreen)} />
   </Stack.Navigator>
 );
 
