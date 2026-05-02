@@ -30,29 +30,65 @@ const Stack = createStackNavigator<any>();
 const Tab = createBottomTabNavigator<any>();
 const screen = (component: React.ComponentType<any>) => component;
 
+interface AuthStackProps {
+  onAuthenticated: () => void;
+}
+
+interface OnboardingStackProps {
+  onOnboarded: () => void;
+}
+
 // Auth Stack
-const AuthStack = () => (
+const AuthStack: React.FC<AuthStackProps> = ({ onAuthenticated }) => (
   <Stack.Navigator
     screenOptions={{
       headerShown: false,
       animationEnabled: true,
     }}
   >
-    <Stack.Screen name="Splash" component={screen(SplashScreen)} />
-    <Stack.Screen name="Login" component={screen(LoginScreen)} />
-    <Stack.Screen name="SignUp" component={screen(SignUpScreen)} />
+    <Stack.Screen name="Splash">
+      {({ navigation }) => (
+        <SplashScreen
+          onGetStarted={() => navigation.navigate('SignUp')}
+          onLogin={() => navigation.navigate('Login')}
+        />
+      )}
+    </Stack.Screen>
+    <Stack.Screen name="Login">
+      {({ navigation }) => (
+        <LoginScreen
+          onLogin={onAuthenticated}
+          onSignUp={() => navigation.navigate('SignUp')}
+          onForgotPassword={() => {}}
+        />
+      )}
+    </Stack.Screen>
+    <Stack.Screen name="SignUp">
+      {({ navigation }) => (
+        <SignUpScreen
+          onSignUp={onAuthenticated}
+          onBackToLogin={() => navigation.navigate('Login')}
+        />
+      )}
+    </Stack.Screen>
   </Stack.Navigator>
 );
 
 // Onboarding Stack
-const OnboardingStack = () => (
+const OnboardingStack: React.FC<OnboardingStackProps> = ({ onOnboarded }) => (
   <Stack.Navigator
     screenOptions={{
       headerShown: false,
     }}
   >
-    <Stack.Screen name="BusinessType" component={screen(BusinessTypeScreen)} />
-    <Stack.Screen name="BusinessDetails" component={screen(BusinessDetailsScreen)} />
+    <Stack.Screen name="BusinessType">
+      {({ navigation }) => (
+        <BusinessTypeScreen onSelect={() => navigation.navigate('BusinessDetails')} />
+      )}
+    </Stack.Screen>
+    <Stack.Screen name="BusinessDetails">
+      {() => <BusinessDetailsScreen onContinue={onOnboarded} />}
+    </Stack.Screen>
   </Stack.Navigator>
 );
 
@@ -161,9 +197,13 @@ const RootNavigator = () => {
         }}
       >
         {!isLoggedIn ? (
-          <Stack.Screen name="Auth" component={AuthStack} />
+          <Stack.Screen name="Auth">
+            {() => <AuthStack onAuthenticated={() => setIsLoggedIn(true)} />}
+          </Stack.Screen>
         ) : !isOnboarded ? (
-          <Stack.Screen name="Onboarding" component={OnboardingStack} />
+          <Stack.Screen name="Onboarding">
+            {() => <OnboardingStack onOnboarded={() => setIsOnboarded(true)} />}
+          </Stack.Screen>
         ) : (
           <Stack.Screen name="App" component={AppStack} />
         )}
