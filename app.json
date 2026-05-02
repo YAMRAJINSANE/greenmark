@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "GreenMark",
+    "slug": "greenmark",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#E6F2F2"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTabletMode": true,
+      "infoPlist": {
+        "UIRequiredDeviceCapabilities": [
+          "portrait",
+          "portrait-upside-down"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#E6F2F2"
+      },
+      "package": "com.greenmark.app",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "display": "standalone",
+      "orientation": "portrait",
+      "scope": "/",
+      "themeColor": "#2BA3A3"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "greenmark-2026"
+      }
+    },
+    "description": "GreenMark - Simple Carbon Offsetting Platform for Small Businesses",
+    "primaryColor": "#2BA3A3",
+    "backgroundColor": "#FFFFFF"
+  }
+}
