@@ -46,7 +46,8 @@
             "useFrameworks": "static"
           }
         }
-      ]
+      ],
+      "expo-font"
     ],
     "description": "GreenMark - Simple Carbon Offsetting Platform for Small Businesses",
     "primaryColor": "#2BA3A3",
